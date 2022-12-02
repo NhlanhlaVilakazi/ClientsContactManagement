@@ -3,13 +3,13 @@
     ViewBag.Title = "Add New Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@section Stylesheets{
+
     <style type="text/css">
         #tbllist_filter {
             margin-bottom: 1%;
         }
     </style>
-}
+
 
 <div class="card">
       
@@ -39,55 +39,37 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
     <script type="text/javascript">
-var js = jQuery.noConflict(true);
-js(document).ready(function() {
-    LoadListing();
-});
-function FunEdit(element) {
-    var code = $(element).closest('tr').find('input[type=hidden]').val();
-   window.location.href = "/employee/Edit?code="+code;
-}
-function FunRemove(element) {
-    var code = $(element).closest('tr').find('input[type=hidden]').val();
-    if (confirm("do you want to remove?")) {
-        $.ajax({
-            type: "POST",
-            url: "/Employee/Remove",
-            data: { code: code },
-            success: function(data) {
-                if (data == 'pass') {
-                    alert('Removed successfully.');
-                    window.location.reload();
-                } else {
-                    alert("Failure due to :" +data)
-                }
-            },
-            failure: function(err) {
-            }
+        var js = jQuery.noConflict(true);
+        js(document).ready(function() {
+                js('#tbllist').DataTable({
+                    data: LoadListing()
+                }); 
         });
-    }
-   //window.location.href = "/employee/Edit?code="+code;
-}
-function LoadListing() {
-    var empdata = [];
-    $.ajax({
-        type: "POST",
-        url: "/Client/Index",
-        async: false,
-        success: function(data) {
-            $.each(data, function(key, value) {
-                var editbtn = "<a onclick='FunEdit(this)' class='btn btn-primary'>Edit</a>";
-                var removebtn = "<a onclick='FunRemove(this)' class='btn btn-danger'>Remove</a>";
-                var hdn = "<input type='hidden' value=" + value.code + " />";
-                var action = editbtn +" | "+ removebtn + hdn;
-                empdata.push([value.code, value.name])
-            })
-        },
-        failure: function(err) {
+
+        function LoadListing() {
+            debugger
+            var clients = [];
+            $.ajax({
+                type: "POST",
+                url: "/Client/Index",
+                async: false,
+                success: function(data) {
+                    for(k = 0; k < clients.length; k++) {
+                        /*var editbtn = "<a onclick='FunEdit(this)' class='btn btn-primary'>Edit</a>";
+                        var removebtn = "<a onclick='FunRemove(this)' class='btn btn-danger'>Remove</a>";
+                        var hdn = "<input type='hidden' value=" + value.code + " />";
+                        var action = editbtn +" | "+ removebtn + hdn;*/
+                        clients.push([ { "code" : client[k].code }, { "name": client[k].name } ]);
+                    }
+
+                    for(i = 0; i < clients.length; i++) {
+                        console,log(clients[i].code);
+                    }
+                },
+                failure: function(err) {
+                }
+            });
+
+            return clients;
         }
-    });
-    js('#tbllist').DataTable({
-        data: empdata
-    });
-}
     </script>
