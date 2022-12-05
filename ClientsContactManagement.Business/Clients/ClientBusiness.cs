@@ -14,7 +14,7 @@ namespace ClientsContactManagement.Business.Clients
 
         public List<ClientViewModel> GetAll()
         {
-            var clients = _clientRepository.GetClients();
+            var clients = _clientRepository.GetClients().GetAwaiter().GetResult();
             return ObjectMapper.Mapper.Map<List<ClientViewModel>>(clients);
         }
     }

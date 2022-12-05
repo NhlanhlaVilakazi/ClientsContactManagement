@@ -14,8 +14,14 @@ namespace ClientsContactManagement.Controllers
         }
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetClients()
+        {
             var clients = _business.GetAll();
-            return View(clients);
+            return Json(clients);
         }
     }
 }

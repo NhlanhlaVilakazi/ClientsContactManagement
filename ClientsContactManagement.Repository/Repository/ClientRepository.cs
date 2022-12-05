@@ -1,6 +1,7 @@
 ﻿using ClientsContactManagement.Data;
 using ClientsContactManagement.Data.DataModels;
 using ClientsContactManagement.Repository.Contrasts;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClientsContactManagement.Repository.Repository
 {
@@ -17,9 +18,10 @@ namespace ClientsContactManagement.Repository.Repository
             _dbContext.Dispose();
         }
 
-        public List<Client> GetClients()
+        public Task<List<Client>> GetClients()
         {
-            return _dbContext.Client.ToList();
+            const string query = "EXEC [GetAllClients]";
+            return _dbContext.Set<Client>().FromSqlRaw(query).ToListAsync();
         }
     }
 }

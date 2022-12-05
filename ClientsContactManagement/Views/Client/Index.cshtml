@@ -18,58 +18,27 @@
         <div class="card-title">
             <h2>Clients</h2>
         </div>
-            
-        <table class="table table-bordered table-striped" id='tbllist'>
-            <thead class="bg-dark text-white">
-                <tr>
-                    <td>Name</td>
-                    <td>Number Of Contacts</td>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
+        
+        <div id="tblContainer" class="d-none">
+            <table class="table table-bordered table-striped" id="tbllist">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <td>Client Code</td>
+                        <td>Name</td>
+                        <td>Number Of Contacts</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
 
-        </table>
-
+            </table>
+        </div>
+        <div class="d-none alert alert-danger" role="alert" id="alert"></div>
     </div>
 
 </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
-    <script type="text/javascript">
-        var js = jQuery.noConflict(true);
-        js(document).ready(function() {
-                js('#tbllist').DataTable({
-                    data: LoadListing()
-                }); 
-        });
-
-        function LoadListing() {
-            debugger
-            var clients = [];
-            $.ajax({
-                type: "POST",
-                url: "/Client/Index",
-                async: false,
-                success: function(data) {
-                    for(k = 0; k < clients.length; k++) {
-                        /*var editbtn = "<a onclick='FunEdit(this)' class='btn btn-primary'>Edit</a>";
-                        var removebtn = "<a onclick='FunRemove(this)' class='btn btn-danger'>Remove</a>";
-                        var hdn = "<input type='hidden' value=" + value.code + " />";
-                        var action = editbtn +" | "+ removebtn + hdn;*/
-                        clients.push([ { "code" : client[k].code }, { "name": client[k].name } ]);
-                    }
-
-                    for(i = 0; i < clients.length; i++) {
-                        console,log(clients[i].code);
-                    }
-                },
-                failure: function(err) {
-                }
-            });
-
-            return clients;
-        }
-    </script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<script src="~/js/clients.js" type="text/javascript"></script>
