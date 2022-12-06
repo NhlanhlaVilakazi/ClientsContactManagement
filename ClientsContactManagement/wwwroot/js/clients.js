@@ -12,7 +12,7 @@ function LoadClientList() {
         async: false,
         success: function (data) {
             $.each(data, function (key, value) {
-                clients.push([value.code, value.name, 0]);
+                clients.push([value.code, value.firstName + " " + value.lastName, value.numberOfLinkedContacts]);
             })
         },
         failure: function (err) {

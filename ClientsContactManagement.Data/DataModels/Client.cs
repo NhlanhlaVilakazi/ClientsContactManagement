@@ -4,6 +4,8 @@ namespace ClientsContactManagement.Data.DataModels
 {
     public class Client : BasePrimaryKey
     {
-        public string name { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public int numberOfLinkedContacts { get; set; }
     }
 }
