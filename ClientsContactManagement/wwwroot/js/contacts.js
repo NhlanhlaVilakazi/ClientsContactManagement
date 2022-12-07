@@ -7,11 +7,11 @@ function LoadClientList() {
     var clients = [];
     $.ajax({
         type: "GET",
-        url: "/Client/GetClients",
+        url: "/Contact/GetContacts",
         async: false,
         success: function (data) {
             $.each(data, function (key, value) {
-                clients.push([value.code, value.firstName + " " + value.lastName, value.numberOfLinkedContacts]);
+                clients.push([value.firstName, value.lastName, value.emailAddress, value.numberOfLinkedClients]);
             })
         },
         failure: function (err) {
@@ -20,11 +20,11 @@ function LoadClientList() {
     });
 
     if (clients.length === 0) {
-        js("#alert").html("No Client(s) found!").removeClass("d-none");
+        js("#alert").html("No Contact(s) found!").removeClass("d-none");
     }
     else {
         js("#tblContainer").removeClass("d-none");
-        js("#tbllist").DataTable({
+        js("#tblContactList").DataTable({
             data: clients
         });
 

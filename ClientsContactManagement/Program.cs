@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 //Register DI
 builder.Services.AddSingleton<IClientRepository, ClientRepository>();
+builder.Services.AddSingleton<IContactRepository, ContactRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,7 +27,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Client}/{action=Index}/{id?}");
+    pattern: "{controller=Client}/{action=NewClient}/{id?}");
 
 
 app.Run();

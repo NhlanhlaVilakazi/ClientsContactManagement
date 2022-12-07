@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ClientsContactManagement.Data.DataModels;
 using ClientsContactManagement.ViewModels.Client;
+using ClientsContactManagement.ViewModels.Contact;
 
 namespace ClientsContactManagement.Business.Mappings
 {
@@ -11,6 +12,7 @@ namespace ClientsContactManagement.Business.Mappings
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<ClientViewModel, Client>().ReverseMap();
+                cfg.CreateMap<ContactViewModel, Contact>().ReverseMap();
             });
 
             var mapper = config.CreateMapper();

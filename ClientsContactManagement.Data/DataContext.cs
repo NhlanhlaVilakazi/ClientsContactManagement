@@ -7,7 +7,7 @@ namespace ClientsContactManagement.Data
     public class DataContext: DbContext, IDbContext
     {
         public DbSet<Client> Client { get; set; }
-
+        public DbSet<Contact> Contact { get; set; }
         public new DbSet<TEntity> Set<TEntity>() where TEntity : class
         {
             return base.Set<TEntity>();
@@ -25,6 +25,8 @@ namespace ClientsContactManagement.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Client>().HasNoKey().ToView(null);
+            modelBuilder.Entity<Contact>().HasNoKey().ToView(null);
         }
     }
 }

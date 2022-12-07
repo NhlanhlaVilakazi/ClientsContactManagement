@@ -1,5 +1,6 @@
 ﻿using ClientsContactManagement.Business.Clients;
 using ClientsContactManagement.Repository.Contrasts;
+using ClientsContactManagement.ViewModels.Client;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClientsContactManagement.Controllers
@@ -12,16 +13,22 @@ namespace ClientsContactManagement.Controllers
         {
             _business = new ClientBusiness(clientRepository);
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
 
         [HttpGet]
         public JsonResult GetClients()
         {
             var clients = _business.GetAll();
             return Json(clients);
+        }
+
+        [HttpGet]
+        public IActionResult NewClient() => View();
+
+        public IActionResult NewClient(ClientViewModel client)
+        {
+            _business.AddClient(client);
+            return RedirectToAction("Index");
         }
     }
 }

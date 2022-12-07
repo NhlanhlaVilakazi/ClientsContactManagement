@@ -4,6 +4,7 @@ namespace ClientsContactManagement.Repository.Contrasts
 {
     public interface IClientRepository : IDisposable
     {
-        Task<List<Client>> GetClients();
+        List<Client> GetClients();
+        void CreateNewClient(Client client);
     }
 }

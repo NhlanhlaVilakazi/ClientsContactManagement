@@ -1,0 +1,66 @@
+﻿@model ClientsContactManagement.ViewModels.Client.ClientViewModel
+@{
+    ViewBag.Title = "Add New Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*
+<div class="card"> 
+    <div class="card-body">
+        <div id="tblContainer" class="d-none">
+            <table class="table table-bordered table-striped" id="tbllist">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <td>Client Code</td>
+                        <td>Name</td>
+                        <td>Number Of Contacts</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+
+            </table>
+        </div>
+        <div class="d-none alert alert-danger" role="alert" id="alert"></div>
+    </div>
+
+</div>*@
+
+<main class="main">
+    <div class="container-fluid">
+            <div class="card-body">
+                <div class="card mb-4">
+                    <div class="card-header">
+                    <i class="fa-solid fa-user-plus"></i>
+                        <strong>Add New Client</strong>
+                    </div>
+                    <div class="card-body">
+                    @using (Html.BeginForm("NewClient", "Client", FormMethod.Post, new { @id = "addClientForm" }))
+                    {
+                        @Html.Hidden("code")
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(model => model.firstName, htmlAttributes: new {@class = "font-weight-bold" })
+                            @Html.TextBoxFor(model => model.firstName, new { @id = "firstNameTxt", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.firstName, "", new { @id = "firstNameErrorLabel", @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "font-weight-bold" })
+                            @Html.TextBoxFor(model => model.lastName, new { @id = "lastNameTxt", @class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.lastName, "", new { @id = "lastNameErrorLabel", @class = "text-danger" })
+                        </div>
+
+                        <div>
+                            <button id="add-client" type="button" class="btn btn-primary">Add Client <i class="fa-solid fa-pen-to-square"></i></button>
+                        </div>
+                    }
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</main>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/add-client-validations.js" type="text/javascript"></script>

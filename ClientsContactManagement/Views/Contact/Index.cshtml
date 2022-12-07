@@ -12,22 +12,20 @@
 
 
 <div class="card">
-      
+
     <div class="card-body">
-        @*<a class="btn btn-success float-end" href="@Url.Action("NewClient")">
-            <i class="fas fa-user-plus"></i> Add New
-        </a>*@
         <div class="card-title">
-            <h2>Clients</h2>
+            <h2>Client Contacts</h2>
         </div>
-        
+
         <div id="tblContainer" class="d-none">
-            <table class="table table-bordered table-striped" id="tbllist">
+            <table class="table table-bordered table-striped" id="tblContactList">
                 <thead class="bg-dark text-white">
                     <tr>
-                        <td>Client Code</td>
                         <td>Name</td>
-                        <td>Number Of Contacts</td>
+                        <td>Surname</td>
+                        <td>Email Address</td>
+                        <td>Number Of Linked Clients</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,4 +41,4 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-<script src="~/js/clients.js" type="text/javascript"></script>
+<script src="~/js/contacts.js" type="text/javascript"></script>
