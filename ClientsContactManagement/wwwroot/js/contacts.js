@@ -11,7 +11,7 @@ function LoadClientList() {
         async: false,
         success: function (data) {
             $.each(data, function (key, value) {
-                clients.push([value.firstName, value.lastName, value.emailAddress, value.numberOfLinkedClients]);
+                clients.push([value.firstName, value.lastName, value.emailAddress, value.numberOfLinkedClients, value.actionLink]);
             })
         },
         failure: function (err) {
@@ -28,5 +28,19 @@ function LoadClientList() {
             data: clients
         });
 
+    }
+
+    function UnlinkContact(code) {
+        $.ajax({
+            type: "POST",
+            url: "/Contact/UnlinkContact",
+            data: code,
+            success: function (data) {
+                
+            },
+            failure: function (err) {
+                console.log(err);
+            }
+        });
     }
 }

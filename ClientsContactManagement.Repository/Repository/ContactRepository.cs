@@ -2,7 +2,9 @@
 using ClientsContactManagement.Data;
 using ClientsContactManagement.Data.DataModels;
 using ClientsContactManagement.Repository.Contrasts;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace ClientsContactManagement.Repository.Repository
 {
@@ -24,6 +26,16 @@ namespace ClientsContactManagement.Repository.Repository
         {
             const string query = "EXEC [GetAllContacts]";
             return _dbContext.Set<Contact>().FromSqlRaw(query).ToList();
+        }
+
+        public void UnlinkContact(Guid code)
+        {
+            SqlParameter[] parameter =
+            {
+                new SqlParameter("@code", code)
+            };
+            const string query = "[UnlinkLinkedContact] @code";
+            _dbContext.Database.ExecuteSqlRaw(query, parameter);
         }
     }
 }

@@ -18,8 +18,14 @@ namespace ClientsContactManagement.Controllers
         [HttpGet]
         public JsonResult GetContacts()
         {
-            var clients = _business.GetContacts();
-            return Json(clients);
+            var contacts = _business.GetContacts();
+            return Json(contacts);
+        }
+
+        public IActionResult UnlinkContact(Guid code) 
+        {
+            _business.UnlinkContact(code);
+            return RedirectToAction("Index");
         }
     }
 }

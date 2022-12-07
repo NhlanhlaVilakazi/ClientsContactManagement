@@ -5,5 +5,6 @@ namespace ClientsContactManagement.Repository.Contrasts
     public interface IContactRepository : IDisposable
     {
         List<Contact> GetContacts();
+        void UnlinkContact(Guid code);
     }
 }
