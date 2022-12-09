@@ -11,7 +11,7 @@ function LoadClientList() {
         async: false,
         success: function (data) {
             $.each(data, function (key, value) {
-                clients.push([value.code, value.firstName + " " + value.lastName, value.numberOfLinkedContacts]);
+                clients.push([value.code, value.firstName + " " + value.lastName, value.numberOfLinkedContacts, value.linkClient + " | "+ value.unlinkClient]);
             })
         },
         failure: function (err) {

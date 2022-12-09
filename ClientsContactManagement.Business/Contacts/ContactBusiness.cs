@@ -15,7 +15,7 @@ namespace ClientsContactManagement.Business.Contacts
         public List<ContactViewModel> GetContacts()
         {
             var contacts = _contactRepository.GetContacts();
-            contacts.ForEach(contact => { contact.actionLink = $"<a href=https://localhost:7249/Contact/UnlinkContact?code={contact.code}>Unlink Contact</a>"; });
+            contacts.ForEach(contact => { contact.actionLink = $"<a title=\"Unlink contact\" href=https://localhost:7249/Contact/UnlinkContact?code={contact.code}><i class=\"fas fa-heart-broken\"></i></a>"; });
             return ObjectMapper.Mapper.Map<List<ContactViewModel>>(contacts);
         }
 

@@ -30,5 +30,11 @@ namespace ClientsContactManagement.Controllers
             _business.AddClient(client);
             return RedirectToAction("Index");
         }
+
+        public IActionResult LinkClient(string clientCode)
+        {
+            var client = _business.GetByCode(clientCode);
+            return View(client);
+        }
     }
 }

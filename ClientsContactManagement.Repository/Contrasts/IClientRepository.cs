@@ -6,5 +6,6 @@ namespace ClientsContactManagement.Repository.Contrasts
     {
         List<Client> GetClients();
         void CreateNewClient(Client client);
+        Client? GetClientByCode(string code);
     }
 }

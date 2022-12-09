@@ -38,5 +38,10 @@ namespace ClientsContactManagement.Repository.Repository
             const string query = "[NewClient] @code, @firstName, @lastName";
             _dbContext.Database.ExecuteSqlRaw(query, parameters);
         }
+
+        public Client? GetClientByCode(string code)
+        {
+            return _dbContext.Client.Where(client => client.code.Equals(code)).FirstOrDefault();
+        }
     }
 }

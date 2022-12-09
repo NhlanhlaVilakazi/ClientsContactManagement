@@ -8,5 +8,9 @@ namespace ClientsContactManagement.Data.DataModels
         public string firstName { get; set; }
         public string lastName { get; set; }
         public int numberOfLinkedContacts { get; set; }
+        [NotMapped]
+        public string unlinkClient { get; set; }
+        [NotMapped]
+        public string linkClient { get; set; }
     }
 }

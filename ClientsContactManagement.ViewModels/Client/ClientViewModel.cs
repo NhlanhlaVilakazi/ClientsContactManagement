@@ -10,6 +10,8 @@ namespace ClientsContactManagement.ViewModels.Client
         public string firstName { get; set; }
         [DisplayName("First Name")]
         public string lastName { get; set; }
+        public string unlinkClient { get; set; }
+        public string linkClient { get; set; }
         public int numberOfLinkedContacts  { get; set; }
     }
 }
