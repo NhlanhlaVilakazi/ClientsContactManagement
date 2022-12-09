@@ -37,9 +37,10 @@ namespace ClientsContactManagement.Business.Clients
             string clientCode = $"{firstCharachers}{lastname[..1]}";
             return clientCode.ToUpper();
         }
-        public Client? GetByCode(string code) 
+        public ClientViewModel? GetByCode(string code) 
         {
-            return _clientRepository.GetClientByCode(code);
+            var clientModel = _clientRepository.GetClientByCode(code); 
+            return ObjectMapper.Mapper.Map<ClientViewModel>(clientModel);
         }
     }
 }

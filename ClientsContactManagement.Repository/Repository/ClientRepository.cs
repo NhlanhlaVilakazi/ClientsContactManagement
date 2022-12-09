@@ -41,7 +41,12 @@ namespace ClientsContactManagement.Repository.Repository
 
         public Client? GetClientByCode(string code)
         {
-            return _dbContext.Client.Where(client => client.code.Equals(code)).FirstOrDefault();
+            SqlParameter[] parameter =
+            {
+                new SqlParameter("@clientCode",  code)
+            };
+            const string query = "[GetClientByCode] @clientCode";
+            return _dbContext.Set<Client>().FromSqlRaw(query, parameter).ToList().SingleOrDefault();
         }
     }
 }
